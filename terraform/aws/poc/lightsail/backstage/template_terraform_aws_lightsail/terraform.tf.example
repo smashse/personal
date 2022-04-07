@@ -1,0 +1,11 @@
+# S3 Backend
+terraform {
+  backend "s3" {
+    encrypt              = true
+    bucket               = "tfstate-shared-backstage"
+    key                  = "terraform.tfstate"
+    workspace_key_prefix = "tf-state"
+    region               = "us-east-1"
+    profile              = "your.profile"
+  }
+}
