@@ -16,11 +16,14 @@ No modules.
 
 ## Resources
 
-| Name                                                                                                                  | Type     |
-| --------------------------------------------------------------------------------------------------------------------- | -------- |
-| [aws_route53_zone.zone](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone)     | resource |
-| [aws_s3_bucket.tfstate_shared](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
-| [aws_s3_object.terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object)      | resource |
+| Name                                                                                                                                                   | Type     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| [aws_acm_certificate.wildcard_domain](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate)                     | resource |
+| [aws_acm_certificate_validation.wildcard_cert](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate_validation) | resource |
+| [aws_route53_record.wildcard_validation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record)                   | resource |
+| [aws_route53_zone.zone](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone)                                      | resource |
+| [aws_s3_bucket.tfstate_shared](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket)                                  | resource |
+| [aws_s3_object.terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object)                                       | resource |
 
 ## Inputs
 
