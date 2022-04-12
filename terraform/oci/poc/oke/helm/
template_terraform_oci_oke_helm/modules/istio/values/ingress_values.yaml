@@ -1,0 +1,119 @@
+gateways:
+  istio-ingressgateway:
+    name: istio-ingressgateway
+    labels:
+      app: istio-ingressgateway
+      istio: ingressgateway
+    ports:
+      - port: 15021
+        targetPort: 15021
+        name: status-port
+        protocol: TCP
+      - port: 80
+        targetPort: 8080
+        name: http2
+        protocol: TCP
+      - port: 443
+        targetPort: 8443
+        name: https
+        protocol: TCP
+    rollingMaxSurge: 100%
+    rollingMaxUnavailable: 25%
+    autoscaleEnabled: true
+    autoscaleMin: 1
+    autoscaleMax: 5
+    cpu:
+      targetAverageUtilization: 80
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 2000m
+        memory: 1024Mi
+    loadBalancerIP: ""
+    loadBalancerSourceRanges: []
+    serviceAnnotations:
+      service.beta.kubernetes.io/oci-load-balancer-internal: "true"
+      service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+      service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: 10
+      service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: 400
+      service.beta.kubernetes.io/oci-load-balancer-connection-idle-timeout: 180
+      service.beta.kubernetes.io/oci-load-balancer-health-check-retries: 5
+      service.beta.kubernetes.io/oci-load-balancer-health-check-interval: 15000
+      service.beta.kubernetes.io/oci-load-balancer-health-check-timeout: 4000
+      service.beta.kubernetes.io/oci-load-balancer-subnet1: ocid1.subnet.oc1.sa-vinhedo-1.example
+    podAnnotations: {}
+    secretVolumes:
+      - name: ingressgateway-certs
+        secretName: istio-ingressgateway-certs
+        mountPath: /etc/istio/ingressgateway-certs
+      - name: ingressgateway-ca-certs
+        secretName: istio-ingressgateway-ca-certs
+        mountPath: /etc/istio/ingressgateway-ca-certs
+    customService: false
+    externalTrafficPolicy: ""
+    ingressPorts: []
+    additionalContainers: []
+    configVolumes: []
+    serviceAccount:
+      annotations: {}
+    env: {}
+    nodeSelector: {}
+    tolerations: []
+    podAntiAffinityLabelSelector: []
+    podAntiAffinityTermLabelSelector: []
+    runAsRoot: false
+    injectionTemplate: ""
+revision: ""
+ownerName: ""
+global:
+  defaultConfigVisibilitySettings: []
+  defaultNodeSelector: {}
+  defaultPodDisruptionBudget:
+    enabled: true
+  defaultResources:
+    requests:
+      cpu: 10m
+  defaultTolerations: []
+  hub: docker.io/istio
+  tag: 1.12.2
+  imagePullPolicy: ""
+  imagePullSecrets: []
+  logAsJson: false
+  arch:
+    amd64: 2
+    s390x: 2
+    ppc64le: 2
+  logging:
+    level: "default:info"
+  priorityClassName: ""
+  proxy:
+    image: proxyv2
+    clusterDomain: "cluster.local"
+    componentLogLevel: "misc:error"
+    enableCoreDump: false
+    logLevel: warning
+  caAddress: ""
+  istioNamespace: istio-system
+  jwtPolicy: "third-party-jwt"
+  meshID: ""
+  mountMtlsCerts: false
+  multiCluster:
+    enabled: false
+    clusterName: ""
+    globalDomainSuffix: "global"
+    includeEnvoyFilter: true
+  network: ""
+  pilotCertProvider: istiod
+  sds:
+    token:
+      aud: istio-ca
+  sts:
+    servicePort: 0
+meshConfig:
+  enablePrometheusMerge: true
+  trustDomain: "cluster.local"
+  defaultConfig:
+    proxyMetadata: {}
+    tracing:
