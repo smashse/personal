@@ -1,0 +1,35 @@
+credentials:
+  name: cloud
+  secretContents:
+    cloud: |
+      [default]
+      ARM_CLOUD_NAME=<arm_cloud_name>
+      ARM_SUBSCRIPTION_ID=<arm_subscription_id>
+      ARM_TENANT_ID=<arm_tenant_id>
+      ARM_CLIENT_ID=<arm_client_id>
+      ARM_CLIENT_SECRET=<arm_client_secret>
+      ARM_RESOURCE_GROUP=<arm_resource_group>
+configuration:
+  provider: azure
+  backupStorageLocation:
+    name: azure
+    bucket: <azurerm_storage_container_velero>
+    prefix: <terraform_workspace>
+    config:
+      resourceGroup: <azurerm_resource_group>
+      storageAccount: <azurerm_storage_account>
+  volumeSnapshotLocation:
+    name: azure
+snapshotsEnabled: true
+deployRestic: true
+image:
+  pullPolicy: IfNotPresent
+  repository: velero/velero
+  tag: latest
+initContainers:
+  - name: velero-plugin-for-microsoft-azure
+    imagePullPolicy: IfNotPresent
+    image: velero/velero-plugin-for-microsoft-azure:master
+    volumeMounts:
+     - name: plugins
+       mountPath: /target

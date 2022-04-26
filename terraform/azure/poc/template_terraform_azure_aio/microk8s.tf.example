@@ -1,0 +1,9 @@
+provider "helm" {
+  kubernetes {
+    config_path = "./config"
+  }
+}
+
+provider "kubernetes" {
+  config_path = "./config"
+}

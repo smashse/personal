@@ -1,0 +1,11 @@
+communications:
+  slack:
+    enabled: true
+    channel: <your_channel>
+    token: <your_token>
+
+config:
+  settings:
+    clustername: microk8s
+    kubectl:
+      enabled: true
